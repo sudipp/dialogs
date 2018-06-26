@@ -25,7 +25,8 @@ function dialog (opt) {
     confirm: render.bind(opt, 'confirm'),
     prompt: render.bind(opt, 'prompt'),
     promptPassword: render.bind(opt, 'promptPassword'),
-    cancel: cancelOpenDialog
+    cancel: cancelOpenDialog,
+    disclaimer: render.bind(opt, 'disclaimer'),
   }
 }
 
@@ -99,7 +100,7 @@ function render (type, title, defaultValue, cb) {
 
   function ok (e) {
     e.preventDefault()
-    if (type === 'confirm' || type === 'alert') cb(true)
+    if (type === 'confirm' || type === 'alert' || type === 'disclaimer') cb(true)
     if (type === 'prompt') cb(el.querySelector('input').value)
     cleanup()
   }
